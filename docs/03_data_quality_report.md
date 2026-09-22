@@ -12,19 +12,25 @@ Before performing analysis, the dataset was inspected to identify data quality i
 ## 1. Missing Values
 
 
-| Column | Issue |
-|--------|-------|
-| Description | Missing product information |
-| CustomerID | Missing customer identifier |
+The dataset contains missing values in two columns:
+
+
+| Column | Missing Values | Percentage |
+|--------|---------------|------------|
+| Description | 1,454 | 0.27% |
+| CustomerID | 135,080 | 24.93% |
 
 
 ### Handling Decision
 
+
 Description:
+
 Rows with missing Description will be removed because product information is required for product analysis.
 
 
 CustomerID:
+
 Missing CustomerID values will be retained for sales analysis but excluded during customer behavior analysis.
 
 
@@ -32,18 +38,42 @@ Missing CustomerID values will be retained for sales analysis but excluded durin
 ## 2. Duplicate Data
 
 
-The dataset contains duplicate transaction records.
-
-Duplicate rows will be removed to prevent inaccurate revenue calculation.
+The dataset contains 5,268 duplicate records (0.97% of total data).
 
 
+### Handling Decision
 
-## 3. Cancelled Transactions
+Duplicate rows will be removed to prevent double counting during revenue and sales performance analysis.
 
 
-Transactions with InvoiceNo starting with "C" represent cancelled orders.
+## 3. Transaction Validation
 
-These transactions will be excluded from sales performance analysis.
+
+### Negative Quantity
+
+The dataset contains transactions with negative Quantity values.
+
+Minimum Quantity:
+-80,995
+
+These records represent returns or cancelled transactions and will be removed.
+
+
+### Invalid Unit Price
+
+The dataset contains invalid UnitPrice values.
+
+Minimum UnitPrice:
+-11,062.06
+
+Transactions with UnitPrice <= 0 will be removed.
+
+
+### Cancelled Transactions
+
+There are 9,288 cancelled transactions identified from InvoiceNo starting with "C".
+
+These records will be excluded during data cleaning.
 
 
 

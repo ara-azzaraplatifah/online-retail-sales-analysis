@@ -99,3 +99,30 @@ will be removed because they do not represent valid sales.
 | Cancelled invoice | Remove |
 | Invalid Quantity | Remove |
 | Invalid UnitPrice | Remove |
+
+
+# Final Cleaning Summary
+
+
+## Dataset Transformation
+
+
+| Stage | Records |
+|---|---:|
+| Original Dataset | 541,909 |
+| After Duplicate Removal | 536,641 |
+| After Quantity Cleaning | 528,654 |
+| After UnitPrice Cleaning | 524,878 |
+
+
+## Final Dataset
+
+The final cleaned dataset contains 524,878 transaction records.
+
+Additional feature engineering was performed by creating a Revenue column:
+
+Revenue = Quantity × UnitPrice
+
+The cleaned dataset is stored as:
+
+data/processed/online_retail_clean.csv
